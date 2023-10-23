@@ -1,8 +1,12 @@
 const {Contact} = require('../models/contacts');
 
 
-const listContacts = async () => {
-    return Contact.find();  
+const listContacts = async (query) => {
+    const { page, limit } = query;
+    const skipped = (page - 1) * limit;
+    const skip = skipped < 0 ? 0 : skipped;
+
+    return Contact.find({},{},{skip,limit:+limit}).populate('owner','email subscription');  
 };
 
 const getContactById = async (contactId) => {

@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { schemaCreate, schemaPatch } = require('../../models/contacts');
 const { validateRequest } = require('../../middlewares/validateRequest');
-
+const { auth,author } = require('../../middlewares/auth.middleware');
 const { listContacts,
     getContactById,
     addContact,
