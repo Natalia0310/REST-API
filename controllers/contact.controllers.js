@@ -25,10 +25,10 @@ const getContactById = async (req, res, next) => {
 
 const addContact = async (req, res, next) => {
     try {
-        // const { error } = schema.validate(req.body);
-        // if (error) {
-        //     res.status(400).json({ "message": "missing required field" });
-        // }       
+        const { error } = schema.validate(req.body);
+        if (error) {
+            res.status(400).json({ "message": "missing required field" });
+        }       
             const contact = await contacts.addContact(req.body);
             res.status(201).json(contact);
         
@@ -53,10 +53,10 @@ const removeContact = async (req, res, next) => {
 
 const updateContact = async (req, res, next) => {
     try {
-        // const { error } = schema.validate(req.body);
-        // if (error) {
-        //     res.status(400).json({ "message": "missing fields" });
-        // } 
+        const { error } = schema.validate(req.body);
+        if (error) {
+            res.status(400).json({ "message": "missing fields" });
+        } 
             const body = req.body;
             const contactId = req.params.contactId;
   
@@ -73,10 +73,10 @@ const updateContact = async (req, res, next) => {
 
 const updateStatusContact = async (req, res, next) => {
     try {
-        // const { favorite } = req.body;
-        // if (!favorite) {
-        //     res.status(400).json({ "message": "missing field favorite" });
-        // }
+        const { favorite } = req.body;
+        if (!favorite) {
+            res.status(400).json({ "message": "missing field favorite" });
+        }
             const body = req.body;
             const contactId = req.params.contactId;
   
